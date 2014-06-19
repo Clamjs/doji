@@ -16,7 +16,9 @@
     "mace": "latest",
     "debug": "latest",
     "gzip-js": "latest",
-    "deflate-js": "latest"
+    "deflate-js": "latest",
+    "is-utf8": "latest",
+    "iconv-lite": "latest"
   },
   "author": "lichenhao",
   "license": "MIT",
