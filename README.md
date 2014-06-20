@@ -35,8 +35,7 @@ proxy.listen(9000);
 
 ```
 var doji = require('doji');
-doji.proxy(req, handle);
-doji.request(http||https, options, request, handle)
+doji.proxy(req, res);
 ```
 
 ## API
@@ -53,6 +52,7 @@ options demo:
 
 ```
 {
+  rootdir: "",
   filters: {
     '\\/\\d+\\.\\d+\\.\\d+\\/': '/',
     '(\\-min\\.)(js|css)': '.$2',
@@ -64,10 +64,12 @@ options demo:
       return matched + '.daily.clam.org';
     }
   },
-  paths: {
+  urls: {
+    // local files remote
     '^\\/t1\\/(\.*)': function (path, matched) {
       return '/remote1/'+ matched;
     },
+    // local file remote2
     '^\\/t2\\/\.*': '/remote2'
   }
 }
@@ -80,11 +82,16 @@ options demo:
 
   eventType| when| arguments
   ---------|-----|---------
-  request |  when request come in           | args: req
-  circle  |  when proxy in circle           | args: req, res
-  local   |  when connect with local(on PC) | args: req, res
-  response | when proxy response data       | args: req, res, proxyRes, resData
-
+  req:start |  when request come in           | args: req
+  req:data | when request data coming | args:  proxyRequest, data
+  req:end| when request data end if u want to handle this data | args: proxyRequest
+  req:abort| when request error | args: req, error
+  proxy:circle  |  when proxy in circle           | args: req, res
+  proxy:local   |  when connect with local(on PC) | args: req, res
+  res:start | when response start | args: proxyResponse
+  res:data | when response data coming | args: null
+  res:end | when response data end | args: proxyResponse, resolvedData (no bom)
+  res:send| when response send you want handle | args: req, res, proxyResponse, bufferData (no gzip no deflate no GBK no bom)
 
 ##About me 
 
@@ -92,7 +99,7 @@ I'm a Web-Developer, living in Hangzhou China.
 
 ##How to keep connect with me.
 
-U can post an [email](crazy.jser@gmail.com) or a issue at [github](https://github.com/lichenhao/doji/issues)
+U can post an [email](crazy.jser@gmail.com) or a issue at [github](https://github.com/mo-tools/doji/issues)
 
 Thank you for install doji~
 
