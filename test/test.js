@@ -16,19 +16,17 @@ var app = doji({
 
 app.on('req:start', function (req) {
   console.log('isCircle %s, isLocal %s, isSecurity %s, remote %s',req.isCircle, req.isLocal, req.isSecurity, req.remote);
-  console.log('method %s %s://%s%s',req.method, req.protocol, req.info.host, req.info.path);
-
-  console.log(req.options)
 });
-app.on('res:start', function () {
-  console.log('response start');
-});
-app.on('res:data', function () {
-  console.log('response data coming')
-});
-app.on('res:end', function (res, buffer) {
-  console.log('response data end',buffer);
-});
-// app.on('res:send', function (req, res, nsres, buffer) {
-
+// app.on('res:start', function () {
+  
 // });
+// app.on('res:data', function () {
+  
+// });
+// app.on('res:end', function (res, buffer) {
+  
+// });
+app.on('res:send', function (req, res, nsres, buffer) {
+  console.log(buffer.toString('utf-8'));
+  app.send(req,res,nsres,buffer);
+});
