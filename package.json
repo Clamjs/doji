@@ -13,12 +13,13 @@
     "proxy"
   ],
   "dependencies": {
-    "mace": "latest",
-    "debug": "latest",
-    "gzip-js": "latest",
-    "deflate-js": "latest",
-    "is-utf8": "latest",
-    "iconv-lite": "latest"
+    "mace": "~0.0.7",
+    "debug": "~1.0.2",
+    "gzip-js": "~0.3.2",
+    "deflate-js": "~0.2.3",
+    "is-utf8": "~0.2.0",
+    "iconv-lite": "~0.4.3",
+    "cheerio": "~0.17.0"
   },
   "author": "lichenhao",
   "license": "MIT",
