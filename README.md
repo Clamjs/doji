@@ -52,6 +52,7 @@ options demo:
 
 ```
 {
+  // The local source file director
   rootdir: "",
   filters: {
     '\\/\\d+\\.\\d+\\.\\d+\\/': '/',
@@ -74,6 +75,13 @@ options demo:
   }
 }
 ```
+* parser
+ args: parseHandle(proxyResponse)
+  proxyResponse =>
+    host
+    port
+    headers (response headers)
+    body (buffer data)
 
 * proxy
   args: req, handle
@@ -91,7 +99,6 @@ options demo:
   res:start | when response start | args: proxyResponse
   res:data | when response data coming | args: null
   res:end | when response data end | args: proxyResponse, resolvedData (no bom)
-  res:send| when response send you want handle | args: req, res, proxyResponse, bufferData (no gzip no deflate no GBK no bom)
 
 ##About me 
 
