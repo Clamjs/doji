@@ -10,6 +10,4 @@ var app = doji({
   'urls': {
     '^.*\.pac$': '/proxy.js',
   }
-}).listen(9000, function () {
-  console.log('debug proxy in 9000')
-});
+}).listen(9000, function () {});

@@ -72,7 +72,11 @@ options demo:
     },
     // local file remote2
     '^\\/t2\\/\.*': '/remote2'
-  }
+  },
+  parsers: [
+    parserHandle1,
+    parserHandle2
+  ]
 }
 ```
 * parser
@@ -88,17 +92,18 @@ options demo:
 
 ## Events
 
-  eventType| when| arguments
-  ---------|-----|---------
-  req:start |  when request come in           | args: req
-  req:data | when request data coming | args:  proxyRequest, data
-  req:end| when request data end if u want to handle this data | args: proxyRequest
-  req:abort| when request error | args: req, error
-  proxy:circle  |  when proxy in circle           | args: req, res
-  proxy:local   |  when connect with local(on PC) | args: req, res
-  res:start | when response start | args: proxyResponse
-  res:data | when response data coming | args: null
-  res:end | when response data end | args: proxyResponse, resolvedData (no bom)
+  eventType    | when                                                | arguments
+  -------------|-----------------------------------------------------|--------------
+  req:start    | when request come in                                | args: req
+  req:data     | when request data coming                            | args: req
+  req:end      | when request data end if u want to handle this data | args: req
+  req:abort    | when request error                                  | args: req, res, error
+  req:close    | when request closed by server side                  | args: req
+  proxy:circle | when proxy in circle                                | args: req, res
+  proxy:local  | when connect with local(on PC)                      | args: req, res
+  res:start    | when response start                                 | args: req, proxyResponse
+  res:data     | when response data coming                           | args: req, proxyResponse
+  res:end      | when response data end                              | args: req, proxyResponse
 
 ##About me 
 
