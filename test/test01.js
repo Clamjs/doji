@@ -12,7 +12,7 @@ var app = doji({
   },
   'widgets': {
     'rootdir': __dirname,
-    'widgets': {
+    'selectors': {
       '#menu-primary': {
         "file": "./test.html",
         "method": "replaceWith",
