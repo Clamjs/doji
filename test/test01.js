@@ -15,7 +15,8 @@ var app = doji({
     'widgets': {
       '#menu-primary': {
         "file": "./test.html",
-        "context": {
+        "method": "replaceWith",
+        "data": {
           "time": +new Date,
           "message": "abc"
         }
