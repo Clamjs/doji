@@ -53,7 +53,7 @@ options demo:
 ```
 {
   // The local source file director
-  rootdir: "",
+  dojiDir: "",
   filters: {
     '\\/\\d+\\.\\d+\\.\\d+\\/': '/',
     '(\\-min\\.)(js|css)': '.$2',
@@ -76,7 +76,16 @@ options demo:
   parsers: [
     parserHandle1,
     parserHandle2
-  ]
+  ],
+  widgets: {
+    selector: {
+      method: 'append',
+      file: '',
+      // only 'css' 'attr' will use this.
+      // future add Juicer compile support
+      data: ''
+    }
+  }
 }
 ```
 * parser
