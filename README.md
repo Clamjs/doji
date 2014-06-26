@@ -73,6 +73,13 @@ options demo:
     // local file remote2
     '^\\/t2\\/\.*': '/remote2'
   },
+  // if set `DOJI_TIME_STAMP_HANDLE` will add timestamp for resource
+  // if set an Object like  this will replace the regexp key with the value you give.
+  // if set Object value as `TIME_STAMP_BUILDER` or others in doji.Parsers.TOKENS ;
+  // @example 
+  //  {
+  //    '\\<iframe.+?\>': ''  
+  //  }
   parsers: [
     parserHandle1,
     parserHandle2
