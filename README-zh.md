@@ -21,6 +21,8 @@ npm install -g doji
 ##如何使用
 
 ### 一、 服务模式
+服务模式，开发者只需要listen一个端口，代理的服务就启动了。
+这个时候，可以将目标终端配置一个代理到服务的下。如何接入请看第三节。
 
 ```nodejs
 var doji = require('doji');
@@ -31,6 +33,7 @@ proxy.listen(9000);
 ```
 
 ### 二、 工具库模式
+工具库的模式，doji将做为中间件存在。只需要将 `request` `response`对象交给 `doji`。`doji`就可以进行代理转发了。
 
 ```nodejs
 var doji = require('doji');
@@ -49,6 +52,23 @@ var zlib = doji.zlib
 // 基本的gbk utf8互转，封装自 is-utf8 iconv-lite
 var charsets = doji.charset;
 ```
+### 三、 如何接入代理服务器
+
+在移动设备上
+
+* IOS
+
+打开手机设置，进入到WIFI配置，找到当前连接的WIFI，进入设置。
+在最下面有一个配置是http 代理（http proxy） 开发者根据自己的需求，可配置手动（IP+PORT）或者自动（http://ip/any_path.pac）pac模式目录是任意的，如果不想配置端口，只需要在80端口的服务上调用`doji.PACHandle(req, res, next)`即可。
+
+* Android
+基本配置参考IOS。只是Android没有PAC的支持，但是有host过滤。
+
+* MAC
+在网络中找到高级设置，代理下找到自动代理。配置对应pac文件路径（参考IOS pac代理配置部分）
+
+* Windows
+在浏览器中配置代理ip port 和host 过滤即可。
 
 ## 接口
 
