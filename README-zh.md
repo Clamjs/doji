@@ -139,7 +139,7 @@ proxy不会继续拦截。而是交给开发者进行处理。
 
 proxy 方法接收两个参数： request, response 
 
-Doji提供了事件
+Doji提供了以下事件，开发者可以追踪每个代理的详细进度。
 
 
   eventType    | when                                                | arguments
