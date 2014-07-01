@@ -53,7 +53,7 @@ options demo:
 ```
 {
   // The local source file director
-  dojiDir: "",
+  dojiDir: "/User/Ryota/Works/demo/src/",
   filters: {
     '\\/\\d+\\.\\d+\\.\\d+\\/': '/',
     '(\\-min\\.)(js|css)': '.$2',
@@ -82,12 +82,17 @@ options demo:
   //  }
   parsers: [
     parserHandle1,
-    parserHandle2
+    parserHandle2,
+    doji.noBom,
+    {
+      '\\a\\.\\b': 'demo.com'
+    },
+    'DOJI_TIME_STAMP_HANDLE'
   ],
   widgets: {
-    selector: {
+    "#header": {
       method: 'append',
-      file: '',
+      file: '/mods/header/header.html',
       // only 'css' 'attr' will use this.
       // future add Juicer compile support
       data: ''
@@ -95,16 +100,9 @@ options demo:
   }
 }
 ```
-* parser
- args: parseHandle(proxyResponse)
-  proxyResponse =>
-    host
-    port
-    headers (response headers)
-    body (buffer data)
 
 * proxy
-  args: req, handle
+  args: req, res
 
 ## Events
 
