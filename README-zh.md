@@ -106,8 +106,13 @@ doji.config(config)
   }
 }
 ```
+### 二、 proxy
 
-## 事件
+proxy方法用来拦截一个请求并且进行代理行为。当这个请求不是一个代理（本地请求）或者是一个循环代理（host指向了本地）
+proxy不会继续拦截。而是交给开发者进行处理。如果发现是一个正常的请求。proxy方法会经过根据配置适配后的信息进行转发代理。当代理返回数据后，proxy，将html内容根据配置进行处理。然后返回。
+proxy 方法接收两个参数： request, response 
+proxy 触发了以下事件供开发者监听处理。
+
 
   eventType    | when                                                | arguments
   -------------|-----------------------------------------------------|--------------
@@ -121,5 +126,9 @@ doji.config(config)
   res:start    | when response start                                 | args: req, proxyResponse
   res:data     | when response data coming                           | args: req, proxyResponse
   res:end      | when response data end                              | args: req, proxyResponse
+
+### 三、 send
+如果经过处理，需要将代理的数据返回。可以使用 `send` 方法
+`send`接收四个参数， `request`, `response`, `proxyResponse`, `bufferData` 返回的头信息，状态将根据`proxyResponse`确定。 `bufferData`为返回的实体。
 
 
